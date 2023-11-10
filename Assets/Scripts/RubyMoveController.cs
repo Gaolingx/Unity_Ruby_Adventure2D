@@ -43,7 +43,31 @@ namespace Player.Ruby
         {
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");
+            //创建一个二维矢量对象来表示 Ruby 移动的数据信息
+            Vector2 move = new Vector2(horizontal, vertical);
 
+            //如果二位矢量 move中的 x/y 不为零，表示正在运动
+            //将 ruby 面向方向设置为移动方向
+            //停止移动，保持以前方向，所以这个 if 结构用于转向时重新赋值面朝方向
+            if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+                //if 条件代表正在移动
+            {
+                lookDirection.Set(move.x, move.y);  //将现在Ruby的面朝方向设置为移动方向（Ruby朝向移动方向）
+                // lookDirection.x = move.x; lookDirection.y = move.y;
+
+                //使向量长度为1，可以将此方法称为 向量的“归一化”方法
+                //通常用在表示方向，而非位置的向量上
+                //因为blend tree 中表示方向的参数值取值范围是 -1.0 到 1.0,
+                //所以一般用 向量作为 Animator.SetFloat 方法的参数时，一般要对向量先进行“归一化”处理
+                lookDirection.Normalize();  //将向量长度设置为1
+            }
+
+            //传递 Ruby 面朝方向 给 blend tree
+            animator.SetFloat("Look X", lookDirection.x);
+            animator.SetFloat("Look Y", lookDirection.y);
+            //传递 Ruby 速度给 blend tree
+            //矢量的 magnitude 属性，用来返回矢量的长度，是一个绝对值
+            animator.SetFloat("Speed", move.magnitude);  //辅助判断是否处于移动状态
 
         }
 
@@ -57,7 +81,7 @@ namespace Player.Ruby
             //rigidbody2d.position = position;
             rigidbody2d.MovePosition(position);
 
-            /*healthSystem.ChangeHealth(1);*/
+            //healthSystem.ChangeHealth(1);
         }
     }
 }

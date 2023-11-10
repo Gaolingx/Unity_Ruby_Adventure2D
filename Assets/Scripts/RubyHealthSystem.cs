@@ -32,6 +32,7 @@ namespace Player.Ruby
             //游戏刚开始，玩家满血
             _currentHealth = maxHealth;
 
+            animator = GetComponent<Animator>();
             rubyMoveController = GetComponent<RubyMoveController>();
             damageZoneHandle = GetComponent<DamageZoneHandle>();
         }
