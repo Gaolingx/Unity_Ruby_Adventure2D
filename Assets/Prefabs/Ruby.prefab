@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 726698143465307044}
   - component: {fileID: 726698143465307045}
+  - component: {fileID: 6669490034171750585}
   - component: {fileID: 7640739608753110566}
   - component: {fileID: 726698143465307043}
   - component: {fileID: 7440678332516397708}
@@ -90,6 +91,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &6669490034171750585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726698143465307046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e21f828875596840b19a1ecb29291a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Projectileforce: 300
+  rubyMoveController: {fileID: 0}
 --- !u!114 &7640739608753110566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,8 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3233d29ab729846940f76572174722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 0}
+  rigidbody2d: {fileID: 0}
   speed: 2
   healthSystem: {fileID: 7440678332516397708}
+  lookDirection: {x: 1, y: 0}
   timeInvincible: 5
 --- !u!114 &7440678332516397708
 MonoBehaviour:
@@ -132,6 +150,7 @@ MonoBehaviour:
   maxHealth: 5
   damageZoneHandle: {fileID: 0}
   rubyMoveController: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!50 &8063805557752035086
 Rigidbody2D:
   serializedVersion: 4

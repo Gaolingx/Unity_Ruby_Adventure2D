@@ -6,9 +6,11 @@ namespace Player.Ruby
 {
     public class RubyMoveController : MonoBehaviour
     {
+        //声明一个公开的游戏对象 projectilePrefab ，用来获取子弹预制件对象
+        public GameObject projectilePrefab;
 
         //声明刚体对象
-        Rigidbody2D rigidbody2d;
+        public Rigidbody2D rigidbody2d;
         //获取用户输入
         float horizontal;
         float vertical;
@@ -21,10 +23,13 @@ namespace Player.Ruby
 
         //声明一个动画管理者组件对象
         Animator animator;
+
+        PlayerWeapon playerWeapon;
+
         //创建一个二维矢量，用来存储 Ruby 静止不动时 看的方向（即面向的方向）
         //与机器人相比，Ruby 可以站立不动、她站立不动时，Move X 和 Y 均为 0，这时状态机就没法获取 Ruby 静止时的朝向
         //所以需要手动设置一个，用来存储静止不动时Ruby的朝向
-        Vector2 lookDirection = new Vector2(1, 0);  //创建二维矢量
+        public Vector2 lookDirection = new Vector2(1, 0);  //创建二维矢量
         Vector2 move;  //移动矢量
 
         //设置玩家无敌的时间间隔
@@ -37,12 +42,20 @@ namespace Player.Ruby
             animator = GetComponent<Animator>();
             rigidbody2d = GetComponent<Rigidbody2D>();
             healthSystem = GetComponent<RubyHealthSystem>();
+            playerWeapon = GetComponent<PlayerWeapon>();
         }
         // 每帧调用一次 Update
         void Update()
         {
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");
+
+            //添加发射子弹的逻辑
+            //按下键盘上的 c 键，发射飞弹
+            if(Input.GetKeyDown(KeyCode.C))
+            {
+                playerWeapon.Launch();
+            }
             //创建一个二维矢量对象来表示 Ruby 移动的数据信息
             Vector2 move = new Vector2(horizontal, vertical);
 
