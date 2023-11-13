@@ -10,10 +10,12 @@ namespace Player.Ruby
         public float Projectileforce = 300;
 
         public RubyMoveController rubyMoveController;
+        Animator animator;
         // Start is called before the first frame update
         void Start()
         {
             rubyMoveController = GetComponent<RubyMoveController>();
+            animator = GetComponent<Animator>();
         }
 
         //玩家发射子弹
@@ -28,7 +30,10 @@ namespace Player.Ruby
             //第一个参数是移动的方向，取的值是玩家面朝的方向
             //第二个参数是力，如果想要速度快些，可以加大
             projectile.Launch(rubyMoveController.lookDirection, Projectileforce);
-            
+
+            animator.SetTrigger("Launch");
+
+
         }
 
     }
