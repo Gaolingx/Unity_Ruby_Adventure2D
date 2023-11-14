@@ -1,3 +1,4 @@
+using Player.Ruby;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,16 @@ public class Projectile : MonoBehaviour
     //碰撞事件方法（发生碰撞时自动执行）
     void OnCollisionEnter2D(Collision2D collision)
     {
+        //获取齿轮飞弹碰撞到的机器人对象的脚本组件（调用方法前记得获取组件）
+        HealthCollectible healthCollectible = collision.collider.GetComponent<HealthCollectible>();
+        if (healthCollectible != null)
+        {
+            healthCollectible.Fix();
+        }
+        else
+        {
+            Debug.LogError("healthCollectible值为空");
+        }
         //我们还增加了调试日志来了解飞弹触碰到的游戏对象
         Debug.Log($"Projectile Collision with {collision.gameObject}");
         //我们希望子弹碰撞对象后消失，这里需要 Destroy 方法销毁当前子弹游戏对象

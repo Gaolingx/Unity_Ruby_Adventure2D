@@ -51,8 +51,8 @@ namespace Player.Ruby
             vertical = Input.GetAxis("Vertical");
 
             //添加发射子弹的逻辑
-            //按下键盘上的 c 键，发射飞弹
-            if(Input.GetKeyDown(KeyCode.C))
+            //按下键盘上的 c 键，或者发射键（左Ctrl或鼠标左键），发射飞弹
+            if(Input.GetKeyDown(KeyCode.C) || Input.GetAxis("Fire1")!=0)
             {
                 playerWeapon.Launch();
             }
