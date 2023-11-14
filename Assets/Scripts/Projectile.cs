@@ -27,10 +27,10 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         //获取齿轮飞弹碰撞到的机器人对象的脚本组件（调用方法前记得获取组件）
-        HealthCollectible healthCollectible = collision.collider.GetComponent<HealthCollectible>();
-        if (healthCollectible != null)
+        EnemyController enemyController = collision.collider.GetComponent<EnemyController>();
+        if (enemyController != null)
         {
-            healthCollectible.Fix();
+            enemyController.Fix();
         }
         else
         {

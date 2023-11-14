@@ -38,14 +38,5 @@ public class HealthCollectible : MonoBehaviour
         }
 
     }
-    //修复机器人的方法
-    //使用 public 的原因是我们希望像飞弹脚本一样在其他地方调用这个函数
-    public void Fix()
-    {
-        //更改状态为已修复
-        enemyController.broked = false;
-        //让机器人不会再被碰撞
-        //这里采取的是刚体对象取消物理引擎效果
-        enemyController.rigidbody2d.simulated = false;
-    }
+
 }

@@ -53,6 +53,17 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    //修复机器人的方法
+    //使用 public 的原因是我们希望像飞弹脚本一样在其他地方调用这个函数
+    public void Fix()
+    {
+        //更改状态为已修复
+        broked = false;
+        //让机器人不会再被碰撞
+        //这里采取的是刚体对象取消物理引擎效果
+        rigidbody2d.simulated = false;
+    }
+
     private void FixedUpdate()
     {
         //注意，! 符号可以反转测试，因此，如果 broken 为 true，则 !broken 将为 false，并且不会执行 return。
