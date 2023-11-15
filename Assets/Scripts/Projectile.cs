@@ -15,7 +15,14 @@ public class Projectile : MonoBehaviour
         //获取刚体对象实例
         rigidbody2d = GetComponent<Rigidbody2D>();
     }
-
+    private void Update()
+    {
+        //如果没有碰到任何碰撞体的齿轮，在飞行距离超过100单位后，自动销毁
+        if(transform.position.magnitude > 100.0f)
+        {
+            Destroy(gameObject);
+        }
+    }
     //把当前子弹抛射出去的方法
     public void Launch(Vector2 direction, float force)
     {
