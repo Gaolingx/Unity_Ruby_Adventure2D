@@ -62,6 +62,8 @@ public class EnemyController : MonoBehaviour
         //让机器人不会再被碰撞
         //这里采取的是刚体对象取消物理引擎效果
         rigidbody2d.simulated = false;
+        //播放修好Robot后动画
+        animator.SetTrigger("Fixed");
     }
 
     private void FixedUpdate()
