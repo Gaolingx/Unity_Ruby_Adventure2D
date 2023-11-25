@@ -28,6 +28,9 @@ public class EnemyController : MonoBehaviour
 
     Animator animator;
 
+    //开放一个属性，用来获取烟雾特效对象，方便我们用代码操作
+    public ParticleSystem smokeEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +67,9 @@ public class EnemyController : MonoBehaviour
         rigidbody2d.simulated = false;
         //播放修好Robot后动画
         animator.SetTrigger("Fixed");
+
+        //销毁粒子组件对象
+        Destroy(smokeEffect);
     }
 
     private void FixedUpdate()
