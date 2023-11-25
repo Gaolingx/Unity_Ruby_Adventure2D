@@ -69,7 +69,9 @@ public class EnemyController : MonoBehaviour
         animator.SetTrigger("Fixed");
 
         //销毁粒子组件对象
-        Destroy(smokeEffect);
+        //Destroy(smokeEffect);
+        //特效停止产生新的粒子，结束特效，原有已生成粒子会正常走完它的生命周期
+        smokeEffect.Stop();
     }
 
     private void FixedUpdate()
