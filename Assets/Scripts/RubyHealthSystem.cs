@@ -59,6 +59,9 @@ namespace Player.Ruby
             }
             //限制方法，限制当前生命值的赋值范围：0-最大生命值（maxHealth）
             _currentHealth = Mathf.Clamp(_currentHealth + amount, 0, maxHealth);
+            //静态方法直接通过类调用，而无需事先声明对象
+            UIHealthBar.Instance.SetMaskValue(currentHealth / (float)maxHealth);
+
             //再控制台输出生命信息
             Debug.Log(_currentHealth + "/" + maxHealth);
         }
